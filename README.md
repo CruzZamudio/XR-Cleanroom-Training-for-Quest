@@ -5,14 +5,19 @@ A Meta Quest 3 mixed-reality app built on Meta's **Passthrough Camera API Sample
 1. **Switchable detection model.** The user picks the stock COCO YOLOv9 (80 everyday classes) or your own trained YOLO from an in-headset menu. Switching happens live, and the choice is remembered between sessions.
 2. **Click-through step panel.** A floating instruction panel with title, text, optional image, progress, and Back / Next / Finish / Restart. The steps are entirely user-driven and not tied to detection.
 
-## What's in this folder
+## What's in this repo
+
+This is a complete Unity project. It contains only the passthrough camera and object detection parts of Meta's [Passthrough Camera API Samples](https://github.com/oculus-samples/Unity-PassthroughCameraApiSamples) (MIT licensed, see `Assets/PassthroughCameraApiSamples/LICENSE.txt`). Meta's other demos and its start menu were removed, so the app opens straight into the detection scene.
 
 ```
 Assets/
-  PassthroughCameraApiSamples/MultiObjectDetection/SentisInference/
-    Scripts/SentisInferenceRunManager.cs    ← REPLACES Meta's file (adds model switching)
-    Editor/SentisModelEditorConverter.cs    ← REPLACES Meta's file (converts any class count, no overwrite)
+  PassthroughCameraApiSamples/
+    PassthroughCamera/                      Meta's camera access + permission request
+    MultiObjectDetection/                   Meta's detection scene, YOLO model and inference
+      SentisInference/Scripts/SentisInferenceRunManager.cs   ← changed: adds model switching
+      SentisInference/Editor/SentisModelEditorConverter.cs   ← changed: converts any class count, no overwrite
   QuestApp/
+    Models/COCO.asset                            profile for the stock COCO model
     Scripts/Detection/DetectionModelProfile.cs   one asset per selectable model
     Scripts/Detection/ModelSelectorPanel.cs      in-headset model picker
     Scripts/Steps/StepSequence.cs                the list of steps (Inspector or JSON)
@@ -26,16 +31,18 @@ tools/
 ## Requirements
 
 - Quest 3 or 3S on Horizon OS v74 or later.
-- Unity 6 (6000.0.38f1 or newer) with Android build support.
-- The packages the sample already uses: MRUK and Unity Inference Engine 2.2.1.
+- Unity **6000.0.66f2** (the version this project was saved with) with Android Build Support.
+- Packages are listed in `Packages/manifest.json` and download automatically the first time you open the project.
 - For pointing and clicking on panels: **Meta XR Interaction SDK** (`com.meta.xr.sdk.interaction.ovr`). It handles both controllers and hands.
 
-## 1. Set up the base project
+## 1. Open the project and build it once
 
-1. Clone Meta's samples:
-   `git clone https://github.com/oculus-samples/Unity-PassthroughCameraApiSamples`
-2. Open it in Unity 6 and build the **MultiObjectDetection** scene to your headset once, unchanged. This confirms camera permission, the build pipeline and the stock model all work before you change anything.
-3. Copy this folder's `Assets/` over the project's `Assets/`. Two sample files are overwritten on purpose, and everything else is new.
+1. Clone this repo and open the folder in Unity Hub (*Add → Add project from disk*). The first open takes a while because Unity downloads packages and builds its `Library/` cache.
+2. Turn on Developer Mode for your Quest in the Meta Horizon phone app. Connect the headset over USB-C and accept *Allow USB debugging* in the headset.
+3. *File → Build Profiles*: switch to **Android**, pick your Quest under *Run Device*, and press **Build and Run**. The only scene in the build is `MultiObjectDetection`.
+4. On first launch the app asks for camera and spatial data permission. Accept both.
+
+Do this once before changing anything. It confirms that camera permission, the build pipeline and the stock model all work.
 
 ## 2. Create the model profiles
 

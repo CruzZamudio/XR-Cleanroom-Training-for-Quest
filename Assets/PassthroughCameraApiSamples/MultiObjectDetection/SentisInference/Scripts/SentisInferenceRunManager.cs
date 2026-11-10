@@ -154,9 +154,14 @@ namespace PassthroughCameraSamples.MultiObjectDetection
         private bool TryLoadProfile(int index)
         {
             var profile = m_modelProfiles[index];
-            if (profile == null || !profile.IsValid(out var problem))
+            if (profile == null)
             {
-                Debug.LogError($"[Detection] Can't load model {index}: {(profile == null ? "slot is empty" : problem)}");
+                Debug.LogError($"[Detection] Can't load model {index}: slot is empty.");
+                return false;
+            }
+            if (!profile.IsValid(out var problem))
+            {
+                Debug.LogError($"[Detection] Can't load model {index}: {problem}");
                 return false;
             }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a20cf392596424380a6911c84c4d08, type: 3}
+  m_Name: COCO
+  m_EditorClassIdentifier: 
+  DisplayName: COCO
+  Description: 
+  SentisModel: {fileID: 5022602860645237092, guid: 69ab50aef18ae412cac4b305492d527c, type: 3}
+  Labels: {fileID: 4900000, guid: c01c64149c7930b45a76559caabd5c78, type: 3}
+  Backend: 512
+  IouThreshold: 0.6
+  ScoreThreshold: 0.23
