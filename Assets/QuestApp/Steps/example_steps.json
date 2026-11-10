@@ -1,0 +1,25 @@
+{
+  "title": "Example Procedure",
+  "steps": [
+    {
+      "title": "Get ready",
+      "body": "Clear your workspace and make sure you can see all of the parts on the table.",
+      "image": ""
+    },
+    {
+      "title": "Find the parts",
+      "body": "Look around the table. Detected objects are labeled in your view.",
+      "image": ""
+    },
+    {
+      "title": "Assemble",
+      "body": "Attach part A to part B, then tighten until snug.",
+      "image": ""
+    },
+    {
+      "title": "Check your work",
+      "body": "Confirm everything is secure, then press Finish.",
+      "image": ""
+    }
+  ]
+}
